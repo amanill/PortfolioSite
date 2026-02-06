@@ -30,7 +30,7 @@ const Projects: React.FC = () => {
             <li>Routing provided by google maps app if installed.</li>
             <li>Routing provided by google maps in safari if app is not installed.</li>
            </ul>
-        <video controls muted src="../images/smparking demo.mov" autoplay poster="posterimage.jpg" loop="true" height="800"></video>
+        <video controls muted src="/images/smparking demo.mov" autoPlay loop height={800} poster="posterimage.jpg"></video>
         <p>App has been shutdown due to supporting external API unfortunately being shut down by Santa Monica.</p>
         </div>
       </div>
