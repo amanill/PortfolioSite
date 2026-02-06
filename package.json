@@ -4,20 +4,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "dev:all": "concurrently \"npm run dev --prefix client-react\" \"npm run dev\"",
+    "build:client": "cd client-react && npm run build",
+    "start:prod": "npm run build:client && node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^1.0.2",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.17.1",
-    "express": "^4.15.2",
-    "express-session": "^1.15.2",
-    "socket.io": "^1.7.3"
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "socket.io": "^4.8.3"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tizme/MEANProjectWeek.git"
@@ -26,5 +26,9 @@
     "url": "https://github.com/tizme/MEANProjectWeek/issues"
   },
   "homepage": "https://github.com/tizme/MEANProjectWeek#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.11"
+  }
 }

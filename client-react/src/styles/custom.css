@@ -1,0 +1,186 @@
+/* Merged custom styles from original client styles (style.css and master.css)
+   Use this file to tweak visual overrides for Materialize. */
+
+/* --- style.css --- */
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 450px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+/* --- master.css excerpts --- */
+*{
+  font-family: sans-serif;
+}
+
+#partials{
+  display: block;
+  margin-top: 70px;
+}
+
+.welcome{
+    margin: 0px 6em 0px 6em
+}
+
+.aboutme{
+  margin: 0px 6em 0px 6em
+}
+.page{
+    background: url(/images/lightblue.png);
+}
+.projects{
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+.resume{
+  margin: 0px auto;
+  text-align: center;
+  position: relative;
+  padding-bottom: 2%;
+  overflow: hidden;
+  display: block;
+}
+
+.resume img{
+  width: 80%;
+  height: auto;
+}
+
+.language{
+  text-align: center;
+  width: 22em;
+  display: inline-block;
+  color:  #cc4400;
+  vertical-align: top;
+}
+
+n/* Navbar alignment overrides: position logo at left viewport margin and links to the right */
+nav {
+  position: relative;
+}
+
+/* reserve left space so nav content doesn't overlap the absolutely positioned logo */
+.nav-wrapper {
+  padding: 0 12px;
+  padding-left: calc(3% + 110px); /* 3% inset + approx logo width */
+  min-height: 76px;
+}
+
+.nav-wrapper .brand-logo {
+  position: absolute;
+  left: 3%; /* 3% from parent for horizontal offset */
+  top: 50%; /* vertically centered within the nav */
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0;
+}
+
+.nav-wrapper .right {
+  float: right;
+  margin-right: 8px;
+}
+
+.nav-wrapper img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Ensure the sidenav trigger is on the right for small screens */
+.sidenav-trigger {
+  float: right;
+}
+
+/* Clearfix to ensure nav wrapper height contains floats */
+.nav-wrapper::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/* Hero and card styles for Home page */
+.hero {
+  background-image: url('/images/splash2.jpg');
+  background-size: cover;
+  background-position: center center;
+  color: white;
+}
+.hero-overlay {
+  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35));
+  padding: 64px 0;
+}
+.hero-inner {
+  text-align: left;
+  max-width: 1100px;
+}
+.hero-title {
+  font-size: 2.2rem;
+  margin: 0 0 6px 0;
+}
+.hero-sub {
+  opacity: 0.95;
+  margin: 0;
+}
+.card-grid .card {
+  box-shadow: 0 6px 18px rgba(16,24,40,0.08);
+}
+.card .card-image img {
+  height: 180px;
+  object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .hero-overlay {
+    padding: 36px 0;
+  }
+  .hero-title {
+    font-size: 1.6rem;
+  }
+}
+
