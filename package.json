@@ -20,12 +20,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tizme/MEANProjectWeek.git"
+    "url": "git+https://github.com/amanill/PortfolioSite.git"
   },
   "bugs": {
-    "url": "https://github.com/tizme/MEANProjectWeek/issues"
+    "url": "https://github.com/amanill/PortfolioSite/issues"
   },
-  "homepage": "https://github.com/tizme/MEANProjectWeek#readme",
+  "homepage": "https://github.com/amanill/PortfolioSite#readme",
   "description": "",
   "devDependencies": {
     "concurrently": "^9.2.1",
