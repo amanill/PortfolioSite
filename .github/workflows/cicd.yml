@@ -1,0 +1,49 @@
+name: CI → Build, Push, Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Login to ACR
+        run: az acr login --name myportfoliosite
+
+      - name: Build & push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./DOCKERFILE
+          push: true
+          tags: |
+            myportfoliosite.azurecr.io/portfolio-site:latest
+            myportfoliosite.azurecr.io/portfolio-site:${{ github.sha }}
+
+      - name: Update Container App to new image
+        run: |
+          az containerapp update \
+            -g Portfolio_Site \
+            -n portfolio-site-container-app \
+            --image myportfoliosite.azurecr.io/portfolio-site:${{ github.sha }}
+
+      - name: Wait for revision to become ready
+        run: |
+          for i in {1..24}; do
+            READY=$(az containerapp revision list -g Portfolio_Site -n portfolio-site-container-app --query "[?properties.runningState=='Running'] | [0].name" -o tsv)
+            if [ -n "$READY" ]; then
+              echo "Revision ready: $READY"
+              break
+            fi
+            echo "Waiting for revision... ($i)"
+            sleep 5
+          done
