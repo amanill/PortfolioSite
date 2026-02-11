@@ -1,5 +1,9 @@
 name: CI → Build, Push, Deploy
 
+permissions:
+  packages: write
+  contents: read
+
 on:
   push:
     branches: [ master ]
@@ -11,13 +15,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Keep this: Required to run 'az containerapp' commands
       - name: Azure Login
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Login to ACR
-        run: az acr login --name myportfoliosite
+      # REMOVED: Login to ACR (No longer needed)
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3 # Updated to v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build & push Docker image
         uses: docker/build-push-action@v5
@@ -26,15 +37,16 @@ jobs:
           file: ./DOCKERFILE
           push: true
           tags: |
-            myportfoliosite.azurecr.io/portfolio-site:latest
-            myportfoliosite.azurecr.io/portfolio-site:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/portfolio-site:latest
+            ghcr.io/${{ github.repository_owner }}/portfolio-site:${{ github.sha }}
 
       - name: Update Container App to new image
         run: |
+          # UPDATED: Image now points to GHCR
           az containerapp update \
             -g Portfolio_Site \
             -n portfolio-site-container-app \
-            --image myportfoliosite.azurecr.io/portfolio-site:${{ github.sha }}
+            --image ghcr.io/${{ github.repository_owner }}/portfolio-site:${{ github.sha }}
 
       - name: Wait for revision to become ready
         run: |
