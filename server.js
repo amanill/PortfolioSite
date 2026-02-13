@@ -7,7 +7,12 @@ const { Server } = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:8080", // Replace with your React dev URL
+    methods: ["GET", "POST"]
+  }
+});
 
 // Session configuration
 const sessionConfig = {
@@ -60,18 +65,12 @@ if (fs.existsSync(reactDist)) {
 
 // Socket.io handling
 io.on('connection', (socket) => {
-  console.log('Client connected:', socket.id);
-
-  // send a welcome message on connect (used by the React demo)
-  socket.emit('welcome', { message: 'Welcome from server!' });
-
-  socket.on('button_clicked', (data) => {
-    console.log('Someone clicked a button! Reason:', data.reason);
-    socket.emit('server_response', { response: 'sockets are the best!' });
+  socket.on('move', (data) => {
+    io.emit('sync-move', data);
   });
-
-  socket.on('disconnect', () => console.log('Client disconnected:', socket.id));
 });
+
+// server.listen(3000, () => console.log('Server running on port 3000'));
 
 // Start server
 const PORT = process.env.PORT || 8080;
