@@ -64,11 +64,8 @@ if (fs.existsSync(reactDist)) {
 }
 
 // Socket.io handling
-io.on('connection', (socket) => {
-  socket.on('move', (data) => {
-    io.emit('sync-move', data);
-  });
-});
+// We pass the 'io' instance to our separated logic file
+require('./server/socketHandler')(io);
 
 // server.listen(3000, () => console.log('Server running on port 3000'));
 
@@ -122,4 +119,3 @@ process.on('unhandledRejection', (reason) => {
 });
 
 // Legacy socket samples removed — using modern Socket.IO server API above.
-
