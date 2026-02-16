@@ -5,6 +5,8 @@ import Projects from './pages/Projects'
 import Resume from './pages/Resume'
 import NavBar from './components/NavBar'
 import SocketDemo from './pages/SocketDemo'
+import Skills from './pages/Skills'
+import PDFDemo from './pages/PDFDemo'
 
 function App() {
   return (
@@ -14,8 +16,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/skills" element={<Skills />} />
         <Route path="/resume" element={<Resume />} />
         <Route path="/socketDemo" element={<SocketDemo />} />
+        <Route path="/pdfdemo" element={<PDFDemo />} />
       </Routes>
     </div>
   )

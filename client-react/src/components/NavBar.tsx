@@ -17,6 +17,7 @@ const NavBar: React.FC = () => {
         <ul className="right hide-on-med-and-down">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/projects">Projects</Link></li>
+          <li><Link to="/skills">Skills</Link></li>
           <li><Link to="/resume">Resume</Link></li>
           <li>
             <a href="https://github.com/tizme" target="_blank" rel="noreferrer">
@@ -33,6 +34,7 @@ const NavBar: React.FC = () => {
         <ul id="nav-mobile" className="sidenav">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/projects">Projects</Link></li>
+          <li><Link to="/skills">Skills</Link></li>
           <li><Link to="/resume">Resume</Link></li>
           <li>
             <a href="https://github.com/tizme" target="_blank" rel="noreferrer">
