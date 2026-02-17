@@ -9,6 +9,7 @@ const Skills: React.FC = () => {
             <ul>
                 <li><Link to="/socketdemo">WebSockets</Link></li>
                 <li><Link to="/pdfdemo">PDF Generation</Link></li>
+                <li><Link to="/discord-demo">Discord Integration</Link></li>
             </ul>
     </section>
   )

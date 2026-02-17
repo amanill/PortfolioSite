@@ -1,0 +1,6 @@
+name = "portfolio-discord-notification"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+DISCORD_WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_URL_HERE"

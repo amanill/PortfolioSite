@@ -7,6 +7,7 @@ import NavBar from './components/NavBar'
 import SocketDemo from './pages/SocketDemo'
 import Skills from './pages/Skills'
 import PDFDemo from './pages/PDFDemo'
+import DiscordDemo from './pages/DiscordDemo';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/resume" element={<Resume />} />
         <Route path="/socketDemo" element={<SocketDemo />} />
         <Route path="/pdfdemo" element={<PDFDemo />} />
+        <Route path="/discord-demo" element={<DiscordDemo />} />
       </Routes>
     </div>
   )
