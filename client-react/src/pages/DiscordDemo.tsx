@@ -22,10 +22,6 @@ const DiscordDemo: React.FC = () => {
             // For local development, you might point to a local proxy or the deployed worker URL.
             const workerUrl = 'https://portfolio-discord-notification.amanill818.workers.dev'; // IMPORTANT: Replace with your actual worker URL
 
-            if (workerUrl === 'YOUR_CLOUDFLARE_WORKER_URL') {
-                throw new Error('Please replace "YOUR_CLOUDFLARE_WORKER_URL" in the code with your actual Cloudflare Worker URL.');
-            }
-
             const response = await fetch(workerUrl, {
                 method: 'POST',
                 headers: {
