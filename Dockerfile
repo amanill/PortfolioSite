@@ -18,7 +18,7 @@ ARG VITE_STRIPE_PUBLIC_KEY
 # Set it as an environment variable for the build command
 ENV VITE_STRIPE_PUBLIC_KEY=$VITE_STRIPE_PUBLIC_KEY
 # Build the React app (creates client-react/dist)
-RUN cd client-react && npm run build # Vite will use the ENV var here
+RUN cd client-react && npm run build
 
 # Stage 2 - Production image
 FROM node:20-alpine
