@@ -13,8 +13,12 @@ RUN npm ci && cd client-react && npm ci
 # Copy source code
 COPY . .
 
+# Declare the build-time argument for the Vite public key
+ARG VITE_STRIPE_PUBLIC_KEY
+# Set it as an environment variable for the build command
+ENV VITE_STRIPE_PUBLIC_KEY=$VITE_STRIPE_PUBLIC_KEY
 # Build the React app (creates client-react/dist)
-RUN cd client-react && npm run build
+RUN cd client-react && npm run build # Vite will use the ENV var here
 
 # Stage 2 - Production image
 FROM node:20-alpine
@@ -35,6 +39,7 @@ COPY server ./server
 COPY server.js .
 
 # Expose the port (default 8080)
+# Your server code should read the port from process.env.PORT || 8080
 EXPOSE 8080
 
 # Start the server

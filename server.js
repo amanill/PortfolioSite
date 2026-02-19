@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
@@ -40,6 +41,7 @@ app.use(express.json());
 // App routes
 // require('./server/config/mongoose.js');
 require('./server/config/routes.js')(app);
+app.use('/api/stripe', require('./server/config/stripe-routes.js'));
 
 // If a React production build exists, serve it from /client-react/dist
 const reactDist = path.join(__dirname, 'client-react', 'dist');
@@ -65,7 +67,7 @@ if (fs.existsSync(reactDist)) {
 
 // Socket.io handling
 // We pass the 'io' instance to our separated logic file
-require('./server/socketHandler')(io);
+require('./server/socketHandler.js')(io);
 
 // server.listen(3000, () => console.log('Server running on port 3000'));
 

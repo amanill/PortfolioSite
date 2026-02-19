@@ -36,6 +36,7 @@ const NavBar: React.FC = () => {
           <li><Link to="/projects">Projects</Link></li>
           <li><Link to="/skills">Skills</Link></li>
           <li><Link to="/resume">Resume</Link></li>
+          <li><Link to="/stripe-demo">Stripe Demo</Link></li>
           <li>
             <a href="https://github.com/tizme" target="_blank" rel="noreferrer">
               <img src="/images/github.png" alt="GitHub" height="20" width="20" /> GitHub
